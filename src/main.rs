@@ -23,6 +23,7 @@ fn main() {
     let mut count_failure: u64 = 0;
 
     let bar = ProgressBar::new(total_runs);
+    bar.tick();
 
     for msg in rx {
         match msg {
