@@ -18,23 +18,23 @@ fn main() {
     let (tx, rx) = mpsc::channel();
     let handles = runner::start_threads(&opt, tx);
 
-    let total_runs = opt.threads_as_u64() * opt.runs_per_thread_as_u64();
-    let mut count_success: u64 = 0;
-    let mut count_failure: u64 = 0;
+    let total_count = opt.threads_as_u64() * opt.runs_per_thread_as_u64();
+    let mut success_count = 0u64;
+    let mut failure_count = 0u64;
 
-    let bar = ProgressBar::new(total_runs);
+    let bar = ProgressBar::new(total_count);
     bar.tick();
 
     for msg in rx {
         match msg {
             Message::ExitStatusSuccess => {
-                count_success += 1;
+                success_count += 1;
             }
             Message::ExitStatusFailure => {
-                count_failure += 1;
+                failure_count += 1;
             }
             Message::FailedToRun(error) => {
-                count_failure += 1;
+                failure_count += 1;
                 bar.println(error);
             }
         }
@@ -43,8 +43,8 @@ fn main() {
 
     bar.finish();
 
-    println!("Success: {}/{}", count_success, total_runs);
-    println!("Failure: {}/{}", count_failure, total_runs);
+    println!("Success: {}/{}", success_count, total_count);
+    println!("Failure: {}/{}", failure_count, total_count);
 
     runner::join_threads(handles);
 }
