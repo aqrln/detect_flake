@@ -1,6 +1,9 @@
 pub use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
+#[structopt(
+    about = "Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky."
+)]
 pub struct Opt {
     /// Command to run
     #[structopt(short, long)]
