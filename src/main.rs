@@ -37,7 +37,7 @@ fn main() {
                 eprintln!("{}", error);
             }
         }
-        bar.inc(1)
+        bar.inc(1);
     }
 
     bar.finish();
