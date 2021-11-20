@@ -34,7 +34,7 @@ fn main() {
             }
             Message::FailedToRun(error) => {
                 count_failure += 1;
-                eprintln!("{}", error);
+                bar.println(error);
             }
         }
         bar.inc(1);
