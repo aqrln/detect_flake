@@ -12,4 +12,4 @@ FLAGS:
 OPTIONS:
     -c, --command <command>                    Command to run
     -r, --runs-per-thread <runs-per-thread>    Number of serial runs per each thread [default: 1]
-    -t, --threads <threads>                    Number of parallel threads [default: 10]
+    -t, --threads <threads>                    Number of parallel threads [default: 100]

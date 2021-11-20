@@ -10,7 +10,7 @@ pub struct Opt {
     pub command: String,
 
     /// Number of parallel threads
-    #[structopt(short, long, default_value = "10")]
+    #[structopt(short, long, default_value = "100")]
     pub threads: u32,
 
     /// Number of serial runs per each thread
