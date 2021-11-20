@@ -1,0 +1,15 @@
+detect_flake 0.1.0
+Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky.
+
+USAGE:
+    detect_flake [FLAGS] [OPTIONS] --command <command>
+
+FLAGS:
+    -h, --help             Prints help information
+    -i, --inherit-stdio    Inherit stdio instead of redirecting to /dev/null
+    -V, --version          Prints version information
+
+OPTIONS:
+    -c, --command <command>                    Command to run
+    -r, --runs-per-thread <runs-per-thread>    Number of serial runs per each thread [default: 1]
+    -t, --threads <threads>                    Number of parallel threads [default: 10]
