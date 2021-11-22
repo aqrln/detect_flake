@@ -2,8 +2,12 @@
 name = "detect_flake"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT"
+description = "Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky"
+authors = ["Alexey Orlenko <alex@aqrln.net>"]
+repository = "https://github.com/aqrln/detect_flake"
+categories = ["command-line-utilities", "development-tools::debugging", "development-tools::testing"]
+keywords = ["testing", "flake", "flaky", "stress-test"]
 
 [dependencies]
 indicatif = "0.16.2"
