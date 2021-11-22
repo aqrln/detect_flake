@@ -1,8 +1,9 @@
 use std::{
     process::{Command, Stdio},
-    sync::mpsc::Sender,
     thread::{self, JoinHandle},
 };
+
+use crossbeam_channel::Sender;
 
 use crate::{command::CommandParser, message::Message, opt::Opt};
 

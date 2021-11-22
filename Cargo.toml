@@ -10,5 +10,6 @@ categories = ["command-line-utilities", "development-tools::debugging", "develop
 keywords = ["testing", "flake", "flaky", "stress-test"]
 
 [dependencies]
+crossbeam-channel = "0.5.1"
 indicatif = "0.16.2"
 structopt = "0.3.25"

@@ -3,8 +3,6 @@ mod message;
 mod opt;
 mod runner;
 
-use std::sync::mpsc;
-
 use indicatif::ProgressBar;
 
 use crate::{
@@ -15,7 +13,7 @@ use crate::{
 fn main() {
     let opt = Opt::from_args();
 
-    let (tx, rx) = mpsc::channel();
+    let (tx, rx) = crossbeam_channel::unbounded();
     let handles = runner::start_threads(&opt, tx);
 
     let total_count = opt.threads_as_u64() * opt.runs_per_thread_as_u64();
