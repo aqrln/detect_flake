@@ -47,7 +47,7 @@ fn main() -> Result<(), &'static str> {
     runner::join_threads(handles);
 
     if failure_count > 0 {
-        Err("Flaky tests detected")
+        Err("Some runs failed")
     } else {
         Ok(())
     }
