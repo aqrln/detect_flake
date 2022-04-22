@@ -10,7 +10,7 @@ use crate::{
     opt::{Opt, StructOpt},
 };
 
-fn main() {
+fn main() -> Result<(), &'static str> {
     let opt = Opt::from_args();
 
     let (tx, rx) = crossbeam_channel::unbounded();
@@ -45,4 +45,10 @@ fn main() {
     println!("Failure: {}/{}", failure_count, total_count);
 
     runner::join_threads(handles);
+
+    if failure_count > 0 {
+        Err("Flaky tests detected")
+    } else {
+        Ok(())
+    }
 }

@@ -5,7 +5,7 @@ pub struct CommandParser {
 impl CommandParser {
     pub fn from_command(cmd: &str) -> Self {
         Self {
-            command_parts: cmd.split(" ").map(|s| s.to_owned()).collect(),
+            command_parts: cmd.split(' ').map(|s| s.to_owned()).collect(),
         }
     }
 
