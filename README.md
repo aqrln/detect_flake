@@ -23,5 +23,5 @@ Flags:
 Options:
 
 - `-c, --command <command>` — Command to run
-- `-r, --runs-per-thread <runs-per-thread>` — Number of serial runs per each thread [default: 1]
-- `-t, --threads <threads>` — Number of parallel threads [default: 100]
+- `-r, --runs-per-thread <runs-per-thread>` — Number of serial runs per each thread [default: 100]
+- `-t, --threads <threads>` — Number of parallel threads [default: 10]
