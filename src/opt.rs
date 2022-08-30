@@ -10,11 +10,11 @@ pub struct Opt {
     pub command: String,
 
     /// Number of parallel threads
-    #[structopt(short, long, default_value = "100")]
+    #[structopt(short, long, default_value = "10")]
     pub threads: u32,
 
     /// Number of serial runs per each thread
-    #[structopt(short, long, default_value = "1")]
+    #[structopt(short, long, default_value = "100")]
     pub runs_per_thread: u32,
 
     /// Inherit stdio instead of redirecting to /dev/null
