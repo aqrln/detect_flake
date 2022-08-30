@@ -16,7 +16,7 @@ fn main() -> Result<(), &'static str> {
     let (tx, rx) = crossbeam_channel::unbounded();
     let handles = runner::start_threads(&opt, tx);
 
-    let total_count = opt.threads_as_u64() * opt.runs_per_thread_as_u64();
+    let total_count = (opt.threads as u64) * (opt.runs_per_thread as u64);
     let mut success_count = 0u64;
     let mut failure_count = 0u64;
 

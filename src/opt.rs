@@ -21,13 +21,3 @@ pub struct Opt {
     #[structopt(short, long)]
     pub inherit_stdio: bool,
 }
-
-impl Opt {
-    pub fn threads_as_u64(&self) -> u64 {
-        self.threads.into()
-    }
-
-    pub fn runs_per_thread_as_u64(&self) -> u64 {
-        self.runs_per_thread.into()
-    }
-}
