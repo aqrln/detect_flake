@@ -20,4 +20,8 @@ pub struct Opt {
     /// Inherit stdio instead of redirecting to /dev/null
     #[structopt(short, long)]
     pub inherit_stdio: bool,
+
+    /// Print the stdout and stderr of unsucessful runs only
+    #[structopt(short, long, conflicts_with = "inherit-stdio")]
+    pub print_failing_output: bool,
 }
