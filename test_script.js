@@ -2,6 +2,6 @@
 
 const n = Math.random();
 
-if (n < 0.5) {
+if (n < 0.2) {
   throw new Error(n);
 }
