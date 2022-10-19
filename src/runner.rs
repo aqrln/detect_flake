@@ -11,7 +11,7 @@ use crate::{command::CommandParser, message::Message, opt::Opt};
 pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
     let cmd = CommandParser::from_command(&opt.command);
 
-    let handles = (0..opt.threads).map(|_| {
+    let handles = (0..opt.threads).map(|thread_idx| {
         let (program, args) = cmd.to_parts_owned();
         let runs_per_thread = opt.runs_per_thread;
         let inherit_stdio = opt.inherit_stdio;
@@ -29,7 +29,7 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                 }
             };
 
-            for _ in 0..runs_per_thread {
+            for i in 1..=runs_per_thread {
                 let msg = match Command::new(&program)
                     .args(&args)
                     .stdout(get_stdio())
@@ -41,7 +41,13 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                             Message::ExitStatusSuccess
                         } else {
                             if print_failing_output {
+                                println!("----------------------------------------");
+                                println!("Run {i} in thread {thread_idx} stdout");
+                                println!("----------------------------------------");
                                 io::stdout().write(&output.stdout).unwrap();
+                                eprintln!("----------------------------------------");
+                                eprintln!("Run {i} in thread {thread_idx} stderr");
+                                eprintln!("----------------------------------------");
                                 io::stderr().write(&output.stderr).unwrap();
                             }
                             Message::ExitStatusFailure
