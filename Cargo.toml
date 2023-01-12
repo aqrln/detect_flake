@@ -7,7 +7,7 @@ description = "Run many instances of the same command in parallel to find abnorm
 authors = ["Alexey Orlenko <alex@aqrln.net>"]
 repository = "https://github.com/aqrln/detect_flake"
 categories = ["command-line-utilities", "development-tools::debugging", "development-tools::testing"]
-keywords = ["testing", "flake", "flaky", "stress-test"]
+keywords = ["testing", "flaky", "stress-test"]
 
 [dependencies]
 clap = { version = "4.0.32", features = ["derive"] }
