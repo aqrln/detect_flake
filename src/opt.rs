@@ -1,27 +1,27 @@
-pub use structopt::StructOpt;
+pub use clap::Parser;
 
-#[derive(StructOpt, Debug)]
-#[structopt(
+#[derive(Parser, Debug)]
+#[clap(
     about = "Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky."
 )]
 pub struct Opt {
     /// Command to run
-    #[structopt(short, long)]
+    #[clap(short, long)]
     pub command: String,
 
     /// Number of parallel threads
-    #[structopt(short, long, default_value = "10")]
+    #[clap(short, long, default_value = "10")]
     pub threads: u32,
 
     /// Number of serial runs per each thread
-    #[structopt(short, long, default_value = "100")]
+    #[clap(short, long, default_value = "100")]
     pub runs_per_thread: u32,
 
     /// Inherit stdio instead of redirecting to /dev/null
-    #[structopt(short, long)]
+    #[clap(short, long)]
     pub inherit_stdio: bool,
 
     /// Print the stdout and stderr of unsucessful runs only
-    #[structopt(short, long, conflicts_with = "inherit-stdio")]
+    #[clap(short, long, conflicts_with = "inherit_stdio")]
     pub print_failing_output: bool,
 }

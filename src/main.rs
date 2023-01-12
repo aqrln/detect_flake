@@ -7,11 +7,11 @@ use indicatif::ProgressBar;
 
 use crate::{
     message::Message,
-    opt::{Opt, StructOpt},
+    opt::{Opt, Parser},
 };
 
 fn main() -> Result<(), &'static str> {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     let (tx, rx) = crossbeam_channel::unbounded();
     let handles = runner::start_threads(&opt, tx);
