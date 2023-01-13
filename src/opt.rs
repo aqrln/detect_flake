@@ -4,6 +4,7 @@ pub use clap::Parser;
 #[clap(
     about = "Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky."
 )]
+#[command(version)]
 pub struct Opt {
     /// Command to run
     #[clap(short, long)]
