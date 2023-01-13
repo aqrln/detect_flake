@@ -19,6 +19,7 @@ Flags:
 - `-h, --help` — Prints help information
 - `-V, --version` — Prints version information
 - `-i, --inherit-stdio` — Inherit stdio instead of redirecting to `/dev/null`
+- `-p, --print-failing-output` — Print the stdout and stderr of unsucessful runs only
 
 Options:
 
