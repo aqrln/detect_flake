@@ -50,7 +50,7 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                                 eprintln!("----------------------------------------");
                                 io::stderr().write(&output.stderr).unwrap();
                             }
-                            Message::ExitStatusFailure
+                            Message::ExitStatusFailure(output.status.code())
                         }
                     }
                     Err(error) => Message::FailedToRun(error.to_string()),
