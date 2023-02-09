@@ -44,11 +44,11 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                                 println!("----------------------------------------");
                                 println!("Run {i} in thread {thread_idx} stdout");
                                 println!("----------------------------------------");
-                                io::stdout().write(&output.stdout).unwrap();
+                                io::stdout().write_all(&output.stdout).unwrap();
                                 eprintln!("----------------------------------------");
                                 eprintln!("Run {i} in thread {thread_idx} stderr");
                                 eprintln!("----------------------------------------");
-                                io::stderr().write(&output.stderr).unwrap();
+                                io::stderr().write_all(&output.stderr).unwrap();
                             }
                             Message::ExitStatusFailure
                         }
