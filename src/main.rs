@@ -38,11 +38,12 @@ fn main() -> Result<(), &'static str> {
                 }
             }
             Message::FailedToRun(error) => {
+                bar.println(error);
+
                 if opt.exit_early_on_error {
                     process::exit(1);
                 } else {
                     failure_count += 1;
-                    bar.println(error);
                 }
             }
         }
