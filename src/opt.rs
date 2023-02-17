@@ -25,4 +25,8 @@ pub struct Opt {
     /// Print the stdout and stderr of unsucessful runs only
     #[clap(short, long, conflicts_with = "inherit_stdio")]
     pub print_failing_output: bool,
+
+    /// Exit early the first time the command returns a non-zero error code
+    #[clap(short, long)]
+    pub exit_early_on_error: bool,
 }

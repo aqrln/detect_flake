@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub enum Message {
     ExitStatusSuccess,
-    ExitStatusFailure,
+    ExitStatusFailure(Option<i32>),
     FailedToRun(String),
 }

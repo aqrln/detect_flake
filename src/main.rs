@@ -3,6 +3,8 @@ mod message;
 mod opt;
 mod runner;
 
+use std::process;
+
 use indicatif::ProgressBar;
 
 use crate::{
@@ -28,12 +30,21 @@ fn main() -> Result<(), &'static str> {
             Message::ExitStatusSuccess => {
                 success_count += 1;
             }
-            Message::ExitStatusFailure => {
-                failure_count += 1;
+            Message::ExitStatusFailure(code) => {
+                if opt.exit_early_on_error {
+                    process::exit(code.unwrap_or(1));
+                } else {
+                    failure_count += 1;
+                }
             }
             Message::FailedToRun(error) => {
-                failure_count += 1;
                 bar.println(error);
+
+                if opt.exit_early_on_error {
+                    process::exit(1);
+                } else {
+                    failure_count += 1;
+                }
             }
         }
         bar.inc(1);
