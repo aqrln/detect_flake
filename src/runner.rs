@@ -37,9 +37,9 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                 {
                     Ok(output) => {
                         if output.status.success() {
-                            Message::ExitStatusSuccess
+                            Message::ExitSuccess
                         } else {
-                            Message::ExitStatusFailure {
+                            Message::ExitFailure {
                                 output,
                                 run_idx: i,
                                 thread_idx,

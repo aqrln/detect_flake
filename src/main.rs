@@ -29,11 +29,11 @@ fn main() -> Result<(), &'static str> {
 
     for msg in rx {
         match msg {
-            Message::ExitStatusSuccess => {
+            Message::ExitSuccess => {
                 success_count += 1;
             }
 
-            Message::ExitStatusFailure {
+            Message::ExitFailure {
                 run_idx,
                 thread_idx,
                 output,
