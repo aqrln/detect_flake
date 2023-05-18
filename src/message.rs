@@ -1,4 +1,4 @@
-use std::process::Output;
+use std::{io, process::Output};
 
 #[derive(Debug)]
 pub enum Message {
@@ -8,5 +8,5 @@ pub enum Message {
         thread_idx: u32,
         output: Output,
     },
-    FailedToRun(String),
+    FailedToRun(io::Error),
 }

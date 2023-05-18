@@ -57,7 +57,7 @@ fn main() -> Result<(), &'static str> {
             }
 
             Message::FailedToRun(error) => {
-                bar.println(error);
+                bar.println(error.to_string());
 
                 if opt.exit_early_on_error {
                     process::exit(1);

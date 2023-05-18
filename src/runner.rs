@@ -46,7 +46,7 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                             }
                         }
                     }
-                    Err(error) => Message::FailedToRun(error.to_string()),
+                    Err(error) => Message::FailedToRun(error),
                 };
                 tx.send(msg).unwrap();
             }
