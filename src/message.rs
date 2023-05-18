@@ -1,6 +1,12 @@
+use std::process::Output;
+
 #[derive(Debug)]
 pub enum Message {
     ExitStatusSuccess,
-    ExitStatusFailure(Option<i32>),
+    ExitStatusFailure {
+        run_idx: u32,
+        thread_idx: u32,
+        output: Output,
+    },
     FailedToRun(String),
 }

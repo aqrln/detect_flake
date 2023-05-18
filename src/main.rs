@@ -3,9 +3,11 @@ mod message;
 mod opt;
 mod runner;
 
-use std::process;
-
 use indicatif::ProgressBar;
+use std::{
+    io::{self, Write},
+    process,
+};
 
 use crate::{
     message::Message,
@@ -30,13 +32,30 @@ fn main() -> Result<(), &'static str> {
             Message::ExitStatusSuccess => {
                 success_count += 1;
             }
-            Message::ExitStatusFailure(code) => {
+
+            Message::ExitStatusFailure {
+                run_idx,
+                thread_idx,
+                output,
+            } => {
+                if opt.print_failing_output {
+                    println!("----------------------------------------");
+                    println!("Run {run_idx} in thread {thread_idx} stdout");
+                    println!("----------------------------------------");
+                    io::stdout().write_all(&output.stdout).unwrap();
+                    eprintln!("----------------------------------------");
+                    eprintln!("Run {run_idx} in thread {thread_idx} stderr");
+                    eprintln!("----------------------------------------");
+                    io::stderr().write_all(&output.stderr).unwrap();
+                }
+
                 if opt.exit_early_on_error {
-                    process::exit(code.unwrap_or(1));
+                    process::exit(output.status.code().unwrap_or(1));
                 } else {
                     failure_count += 1;
                 }
             }
+
             Message::FailedToRun(error) => {
                 bar.println(error);
 
@@ -47,6 +66,7 @@ fn main() -> Result<(), &'static str> {
                 }
             }
         }
+
         bar.inc(1);
     }
 

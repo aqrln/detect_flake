@@ -1,5 +1,4 @@
 use std::{
-    io::{self, Write},
     process::{Command, Stdio},
     thread::{self, JoinHandle},
 };
@@ -40,17 +39,11 @@ pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
                         if output.status.success() {
                             Message::ExitStatusSuccess
                         } else {
-                            if print_failing_output {
-                                println!("----------------------------------------");
-                                println!("Run {i} in thread {thread_idx} stdout");
-                                println!("----------------------------------------");
-                                io::stdout().write_all(&output.stdout).unwrap();
-                                eprintln!("----------------------------------------");
-                                eprintln!("Run {i} in thread {thread_idx} stderr");
-                                eprintln!("----------------------------------------");
-                                io::stderr().write_all(&output.stderr).unwrap();
+                            Message::ExitStatusFailure {
+                                output,
+                                run_idx: i,
+                                thread_idx,
                             }
-                            Message::ExitStatusFailure(output.status.code())
                         }
                     }
                     Err(error) => Message::FailedToRun(error.to_string()),
