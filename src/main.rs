@@ -3,8 +3,12 @@ mod message;
 mod opt;
 mod runner;
 
+#[cfg(feature = "gui")]
+mod gui;
+
 use indicatif::ProgressBar;
 use std::{
+    error::Error,
     io::{self, Write},
     process,
 };
@@ -14,8 +18,13 @@ use crate::{
     opt::{Opt, Parser},
 };
 
-fn main() -> Result<(), &'static str> {
+fn main() -> Result<(), Box<dyn Error>> {
     let opt = Opt::parse();
+
+    if cfg!(feature = "gui") && (opt.gui || opt.command.is_empty()) {
+        gui::start(opt)?;
+        return Ok(());
+    }
 
     let (tx, rx) = crossbeam_channel::unbounded();
     let handles = runner::start_threads(&opt, tx);
@@ -78,7 +87,7 @@ fn main() -> Result<(), &'static str> {
     runner::join_threads(handles);
 
     if failure_count > 0 {
-        Err("Some runs failed")
+        Err("Some runs failed".into())
     } else {
         Ok(())
     }

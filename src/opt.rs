@@ -7,7 +7,13 @@ pub use clap::Parser;
 #[command(version)]
 pub struct Opt {
     /// Command to run
+    #[cfg(not(feature = "gui"))]
     #[clap(short, long)]
+    pub command: String,
+
+    /// Command to run
+    #[cfg(feature = "gui")]
+    #[clap(short, long, default_value = "")]
     pub command: String,
 
     /// Number of parallel threads
@@ -29,4 +35,9 @@ pub struct Opt {
     /// Exit early the first time the command returns a non-zero error code
     #[clap(short, long)]
     pub exit_early_on_error: bool,
+
+    /// Open a GUI window.
+    #[cfg(feature = "gui")]
+    #[clap(short, long)]
+    pub gui: bool,
 }

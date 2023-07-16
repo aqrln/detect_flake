@@ -9,7 +9,12 @@ repository = "https://github.com/aqrln/detect_flake"
 categories = ["command-line-utilities", "development-tools::debugging", "development-tools::testing"]
 keywords = ["testing", "flaky", "stress-test"]
 
+[features]
+full = ["gui"]
+gui = ["eframe"]
+
 [dependencies]
 clap = { version = "4.3.12", features = ["derive"] }
 crossbeam-channel = "0.5.8"
+eframe = { version = "0.22.0", optional = true }
 indicatif = "0.17.5"
