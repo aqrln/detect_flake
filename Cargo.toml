@@ -1,6 +1,6 @@
 [package]
 name = "detect_flake"
-version = "0.5.2"
+version = "0.5.3"
 edition = "2021"
 license = "MIT"
 description = "Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky"
