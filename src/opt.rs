@@ -22,7 +22,7 @@ pub struct Opt {
     #[clap(short, long)]
     pub inherit_stdio: bool,
 
-    /// Print the stdout and stderr of unsucessful runs only
+    /// Print the stdout and stderr of unsuccessful runs only
     #[clap(short, long, conflicts_with = "inherit_stdio")]
     pub print_failing_output: bool,
 
