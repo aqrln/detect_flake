@@ -20,6 +20,7 @@ Flags:
 - `-V, --version` — Prints version information
 - `-i, --inherit-stdio` — Inherit stdio instead of redirecting to `/dev/null`
 - `-p, --print-failing-output` — Print the stdout and stderr of unsucessful runs only
+- `-e, --exit-early-on-error` — Exit early the first time the command returns a non-zero error code
 
 Options:
 
