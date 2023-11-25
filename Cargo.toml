@@ -14,6 +14,7 @@ upgrade-guid = "659127AF-0F8B-43C2-B02C-E24295FD6ADA"
 path-guid = "B4643503-D1B3-424E-8141-2D17006C7EF3"
 
 [dependencies]
+anyhow = "1.0.75"
 clap = { version = "4.4.8", features = ["derive"] }
 crossbeam-channel = "0.5.8"
 indicatif = "0.17.7"

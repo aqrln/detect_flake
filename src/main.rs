@@ -14,7 +14,7 @@ use crate::{
     opt::{Opt, Parser},
 };
 
-fn main() -> Result<(), &'static str> {
+fn main() -> anyhow::Result<()> {
     let opt = Opt::parse();
 
     let (tx, rx) = crossbeam_channel::unbounded();
@@ -78,7 +78,7 @@ fn main() -> Result<(), &'static str> {
     runner::join_threads(handles);
 
     if failure_count > 0 {
-        Err("Some runs failed")
+        Err(anyhow::anyhow!("some runs failed"))
     } else {
         Ok(())
     }
