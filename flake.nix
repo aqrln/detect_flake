@@ -30,6 +30,7 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             cargo-dist
+            cargo-release
             rust
             rust-analyzer
           ];
