@@ -26,8 +26,6 @@ npm install detect_flake
 brew install aqrln/homebrew-tap/detect_flake
 ```
 
-(macOS only, Homebrew on Linux is not supported)
-
 ### Install using Nix
 
 ```sh
