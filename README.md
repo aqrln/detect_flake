@@ -4,9 +4,37 @@ Run many instances of the same command in parallel to find abnormal behavior or 
 
 ## Installation
 
+See the [GitHub Releases](https://github.com/aqrln/detect_flake/releases) for installation scripts and pre-built binaries.
+
+You can also use one of the following package managers.
+
+### Install using cargo
+
 ```sh
 cargo install detect_flake
 ```
+
+### Install using npm
+
+```sh
+npm install detect_flake
+```
+
+### Install using Homebrew
+
+```sh
+brew install aqrln/homebrew-tap/detect_flake
+```
+
+(macOS only, Homebrew on Linux is not supported)
+
+### Install using Nix
+
+```sh
+nix profile install github:aqrln/detect_flake
+```
+
+(or run it right away without installing with `nix run github:aqrln/detect_flake -- <ARGUMENTS>`)
 
 ## Usage
 
