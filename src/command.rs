@@ -1,20 +1,20 @@
-pub struct CommandParser {
-    command_parts: Vec<String>,
-}
+use anyhow::{anyhow, Result};
 
-impl CommandParser {
-    pub fn from_command(cmd: &str) -> Self {
-        Self {
-            command_parts: cmd.split(' ').map(|s| s.to_owned()).collect(),
-        }
+pub struct ParsedCommand(Vec<String>);
+
+impl ParsedCommand {
+    pub fn parse(cmd: &str) -> Result<Self> {
+        shlex::split(cmd)
+            .map(Self)
+            .ok_or_else(|| anyhow!("failed to parse the command: '{}'", cmd))
     }
 
     pub fn program(&self) -> &str {
-        &self.command_parts[0]
+        &self.0[0]
     }
 
     pub fn args(&self) -> &[String] {
-        &self.command_parts[1..]
+        &self.0[1..]
     }
 
     pub fn to_parts_owned(&self) -> (String, Vec<String>) {

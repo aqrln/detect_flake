@@ -5,11 +5,9 @@ use std::{
 
 use crossbeam_channel::Sender;
 
-use crate::{command::CommandParser, message::Message, opt::Opt};
+use crate::{command::ParsedCommand, message::Message, opt::Opt};
 
-pub fn start_threads(opt: &Opt, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
-    let cmd = CommandParser::from_command(&opt.command);
-
+pub fn start_threads(opt: &Opt, cmd: &ParsedCommand, tx: Sender<Message>) -> Vec<JoinHandle<()>> {
     let handles = (0..opt.threads).map(|thread_idx| {
         let (program, args) = cmd.to_parts_owned();
         let runs_per_thread = opt.runs_per_thread;
