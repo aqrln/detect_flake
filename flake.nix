@@ -22,7 +22,6 @@
         pkgs = import nixpkgs { inherit system overlays; };
         rust = pkgs.rust-bin.stable.latest.default;
         craneLib = (crane.mkLib pkgs).overrideToolchain rust;
-
         rustDev = rust.override {
           extensions = [ "rust-src" "rust-analyzer" ];
         };
