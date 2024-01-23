@@ -23,6 +23,10 @@
         rust = pkgs.rust-bin.stable.latest.default;
         craneLib = (crane.mkLib pkgs).overrideToolchain rust;
 
+        rustDev = rust.override {
+          extensions = [ "rust-src" "rust-analyzer" ];
+        };
+
       in
       {
         formatter = pkgs.nixpkgs-fmt;
@@ -31,8 +35,7 @@
           nativeBuildInputs = with pkgs; [
             cargo-dist
             cargo-release
-            rust
-            rust-analyzer
+            rustDev
           ];
         };
 
