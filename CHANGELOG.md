@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-Commits: <https://github.com/aqrln/detect_flake/compare/v0.5.7...HEAD>
+Commits: <https://github.com/aqrln/detect_flake/compare/v0.6.0...HEAD>
+
+## Version 0.6.0 (2024-01-23)
+
+Commits: <https://github.com/aqrln/detect_flake/compare/v0.5.7...v0.6.0>
 
 ### Added
 
