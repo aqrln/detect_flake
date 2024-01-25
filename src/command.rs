@@ -6,7 +6,7 @@ impl ParsedCommand {
     pub fn parse(cmd: &str) -> Result<Self> {
         shlex::split(cmd)
             .map(Self)
-            .ok_or_else(|| anyhow!("failed to parse the command: '{}'", cmd))
+            .ok_or_else(|| anyhow!("failed to parse the command: '{cmd}'"))
     }
 
     pub fn program(&self) -> &str {
