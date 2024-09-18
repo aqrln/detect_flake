@@ -6,7 +6,11 @@ license = "MIT OR Apache-2.0"
 description = "Run many instances of the same command in parallel to find abnormal behavior or check if a test is flaky"
 authors = ["Alexey Orlenko <alex@aqrln.net>"]
 repository = "https://github.com/aqrln/detect_flake"
-categories = ["command-line-utilities", "development-tools::debugging", "development-tools::testing"]
+categories = [
+    "command-line-utilities",
+    "development-tools::debugging",
+    "development-tools::testing",
+]
 keywords = ["testing", "flaky", "stress-test"]
 
 [package.metadata.wix]
@@ -30,7 +34,7 @@ lto = "thin"
 # Config for 'cargo dist'
 [workspace.metadata.dist]
 # The preferred cargo-dist version to use in CI (Cargo.toml SemVer syntax)
-cargo-dist-version = "0.7.2"
+cargo-dist-version = "0.22.1"
 # CI backends to support
 ci = ["github"]
 # The installers to generate for each app
