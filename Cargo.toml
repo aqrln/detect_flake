@@ -22,7 +22,7 @@ eula = false
 [dependencies]
 anyhow = "1.0.75"
 clap = { version = "4.4.8", features = ["derive"] }
-crossbeam-channel = "0.5.8"
+crossbeam-channel = "0.5.15"
 indicatif = "0.17.7"
 shlex = "1.3.0"
 
